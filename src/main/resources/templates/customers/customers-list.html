@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragments/head}"></th:block>
+    <link rel="stylesheet" href="../../bootstrap.css">
+</head>
+<body>
+<th:block th:insert="~{fragments/navbar}"></th:block>
+    <div class="jumbotron">
+        <h1>Ordered Customers</h1>
+        <h2>Spring Essentials Exercise</h2>
+        <h4>Query 1. Ordered Customers Task</h4>
+        <hr />
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Birth Date</th>
+                <th scope="col">Is Young Driver</th>
+            </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="customer : ${customers}">
+                    <tr>
+                        <td th:text="${customer.name}"></td>
+                        <td th:text="${customer.birthDate}"></td>
+                        <th:block th:if="${customer.youngDriver}">
+                            <td><input type="checkbox" checked disabled></td>
+                        </th:block>
+                        <th:block th:unless="${customer.youngDriver}">
+                            <td><input type="checkbox" disabled></td>
+                        </th:block>
+                        <td><a class="btn btn-info" th:href="@{/customers/{id}(id=${customer.id})}">Info</a></td>
+                        <td><a class="btn " style="background-color: #856404" th:href="@{/customers/edit/{id}(id=${customer.id})}">Edit</a></td>
+                    </tr>
+                </th:block>
+
+            </tbody>
+        </table>
+        <a class="btn bg-white" th:href="@{/customers}">Back to Customers</a>
+        <a class="btn bg-white" th:href="@{/}">Back to Home</a>
+    </div>
+
+</body>
+</html>

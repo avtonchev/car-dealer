@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragments/head}"></th:block>
+    <link rel="stylesheet" href="../bootstrap.css">
+</head>
+<body>
+<th:block th:insert="~{fragments/navbar}"></th:block>
+<div class="jumbotron">
+    <h1>Welcome to car dealer!</h1>
+    <h2>Spring Essentials Exercise</h2>
+    <h4>Query 2. Cars From Make Task</h4>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Make</th>
+            <th scope="col">Model</th>
+            <th scope="col">Travelled Distance</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <th:block th:each="car : ${cars}">
+            <tr>
+                <td th:text="${car.make}"></td>
+                <td th:text="${car.model}"></td>
+                <td th:text="|${car.travelledDistance} km|"></td>
+                <td><a class="btn btn-info" th:href="@{/cars/{id}/parts(id=${car.id})}">Parts</a></td>
+            </tr>
+        </th:block>
+
+        </tbody>
+    </table>
+    <a class="btn bg-white" th:href="@{/cars}">Back to cars</a>
+    <a class="btn bg-white" th:href="@{/}">Back to home</a>
+</div>
+</body>
+</html>
